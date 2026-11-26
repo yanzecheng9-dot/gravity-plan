@@ -36,7 +36,8 @@ a:focus-visible,button:focus-visible,select:focus-visible,.plot:focus-visible { 
 @keyframes spin { to { transform: rotate(360deg) } }
 @keyframes spinrev { to { transform: rotate(-360deg) } }
 .brand,.dateline { position: relative; z-index: 1 }
-.brand { font: 800 clamp(38px,6vw,58px)/1.15 var(--serif); letter-spacing: -.045em }
+.brand { font: clamp(40px,6.4vw,60px)/1.15 "ZCOOL QingKe HuangYou", var(--serif); letter-spacing: .01em }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) { .brand { background: linear-gradient(94deg, #f2efe9 22%, #ffc9b0 60%, #ff4d1c 97%); -webkit-background-clip: text; background-clip: text; color: transparent } }
 .dateline { display: grid; text-align: right; gap: 1px; color: var(--muted); font-size: 12px }
 .dateline time { font: 500 clamp(16px,2.4vw,22px)/1.3 var(--mono); color: var(--ink); font-variant-numeric: tabular-nums }
 .dateline time:before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 8px; vertical-align: 3px; animation: breathe 2.6s ease-in-out infinite }
