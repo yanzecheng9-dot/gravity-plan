@@ -26,7 +26,7 @@ function spark(asset) {
  const coords = points(closes, 150, 43, 4);
  const [x, y] = coords.at(-1);
  return `<svg class="spark" viewBox="-2 0 156 43" role="img" aria-label="${asset} 近 60 日收盘走势">
-   <path d="${path(coords)}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+   <path pathLength="1" d="${path(coords)}" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
    <circle cx="${x}" cy="${y}" r="2.6" fill="currentColor"/>
  </svg>`;
 }
@@ -76,8 +76,8 @@ function renderChart(){const host=$('plot');if(!host)return;const rows=state.his
  const [lastX,lastY]=xy.at(-1);
  host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">
   <g fill="${axisColor}" font-family="Arial,sans-serif" font-size="12">${gridLines}</g>
-  <path d="${line}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
-  <circle cx="${lastX}" cy="${lastY}" r="3.5" fill="${col}"/>
+  <path class="chartline" pathLength="1" d="${line}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
+  <circle class="chartdot" cx="${lastX}" cy="${lastY}" r="3.5" fill="${col}"/>
   <g id="marker"></g></svg><div class="tip" id="tip" role="status"></div>`;
  let idx=rows.length-1;function show(i){idx=Math.max(0,Math.min(i,rows.length-1));let [x,y]=xy[idx];$('marker').innerHTML='<path d="M'+x+' '+t+'V'+(h-b)+'" stroke="#a49f96" stroke-dasharray="2 4"/><circle cx="'+x+'" cy="'+y+'" r="4" fill="'+col+'"/>';const tip=$('tip');tip.textContent=rows[idx][0]+' · '+money(rows[idx][2]);tip.style.display='block';tip.style.left=Math.max(85,Math.min(w-85,x))+'px';tip.style.top=Math.max(0,y-31)+'px'}
  host.onpointermove=e=>show(Math.round((e.clientX-host.getBoundingClientRect().left-l)/ww*(rows.length-1)));host.onpointerleave=host.onblur=()=>{$('tip').style.display='none';$('marker').replaceChildren()};host.onkeydown=e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();show(idx+(e.key==='ArrowLeft'?-1:1))}};host.onfocus=()=>show(idx)}
