@@ -141,3 +141,8 @@ footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8p
  .spark path,.chartline { stroke-dashoffset: 0 }
  .spark circle,.chartdot { opacity: 1 }
 }
+
+.quote { grid-template-areas: "head head" "price move" "stamp stamp" "target target" "spark spark" }
+.quote-stamp { grid-area: stamp; margin-top: 6px; font: 12px/1.5 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums }
+.move span { font: 11px/1 var(--mono); color: var(--muted); margin-right: 4px }
+@media (max-width: 390px) { .move span { display: block; text-align: right; margin: 0 4px 3px 0 } }
